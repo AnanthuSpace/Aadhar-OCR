@@ -41,9 +41,9 @@ Install my-project with npm
     
 ## Screenshots
 
-![App Screenshot]()
+![App Screenshot - Home Page](./server/screenshots/Screen1.jpg)
 
-![App Screenshot]()
+![App Screenshot - Home Page](./server/screenshots/Screen2.png)
 
 
 ## Run Locally
