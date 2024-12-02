@@ -24,17 +24,14 @@ export const getName = (text) => {
 export const getDOB = (text) => {
     const dobRegex = /\s+(\d{2}\/\d{2}\/\d{4})/;
     const match = text.match(dobRegex);
-    if (match && match[1]) {
-        return match[1];
-    }
-    return null;
+    return match ? match[0] : null
 }
 
 
 export const getGender = (text) => {
     const genderRegex = /MALE|FEMALE|Male|Female|TRANSGENDER/;
     const match = text.match(genderRegex)
-    return match ? match[1] : null
+    return match ? match[0] : null
 }
 
 

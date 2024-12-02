@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import { nextui } from '@nextui-org/theme';
 export default {
   content: [
     "./index.html", // Ensure Vite's entry file is included
@@ -7,5 +8,5 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [nextui()]
 };

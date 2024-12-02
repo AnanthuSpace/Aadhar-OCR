@@ -57,7 +57,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd ocr-system/front-end
+  cd aadhar-ocr-system/client
 ```
 
 Install dependencies
@@ -76,7 +76,7 @@ set up env
 
 move to backend folder
 ```bash
-  cd ../backend
+  cd ../server
 ```
 
 set env for backend

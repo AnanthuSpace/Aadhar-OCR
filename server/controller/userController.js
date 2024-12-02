@@ -23,6 +23,7 @@ const parseAadhar = async (req, res) => {
 
       const Name = await getName(frontpageText)
       const Gender = await getGender(frontpageText)
+      console.log(Gender)
       const DOB = await getDOB(frontpageText)
       const addressData = await getAddress(backpageText)
 
