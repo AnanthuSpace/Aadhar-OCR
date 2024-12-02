@@ -38,7 +38,7 @@ const App = () => {
       
       // Axios POST request
       const response = await axios.post(
-        `http://localhost:4000/upload-file`,
+        `http://35.154.88.107:4000/upload-file`,
         formData,
         {
           headers: {

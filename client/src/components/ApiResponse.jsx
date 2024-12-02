@@ -22,7 +22,7 @@ const ApiResponse = ({ data }) => {
           </div>
           <div className="space-y-1">
             <label className="text-sm text-gray-500">Gender</label>
-            <div className="border-b border-gray-200 pb-1">MALE</div>
+            <div className="border-b border-gray-200 pb-1">{data.Gender}</div>
           </div>
           <div className="col-span-2 space-y-1">
             <label className="text-sm text-gray-500">Address</label>
