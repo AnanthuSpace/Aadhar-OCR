@@ -38,7 +38,7 @@ const App = () => {
       
       // Axios POST request
       const response = await axios.post(
-        `http://35.154.88.107:4000/upload-file`,
+        `https://ocr.vuepix.shop/upload-file`,
         formData,
         {
           headers: {
