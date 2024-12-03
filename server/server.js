@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import userRouter from './router/userRouter.js'; 
+import { errorHandle, notFound } from './middleware/errorHanler.js';
 
 dotenv.config();
 
@@ -20,6 +21,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use('/', userRouter);
+
+app.use("*", notFound);
+app.use(errorHandle)
 
 app.listen(port, () => {
     console.log(`Server started at port ${port}`);
