@@ -1,22 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import ImageUploader from "./components/ImageUploader";
 import ApiResponse from "./components/ApiResponse";
 import axios from "axios";
-import { Toaster, toast } from 'sonner';
+import { Toaster, toast } from "sonner";
+import { ImageData, ApiResponseData } from "./interface/interface";
 
-const App = () => {
-  const [images, setImages] = useState({
+const App: React.FC = () => {
+  const [images, setImages] = useState<{
+    frontpage: ImageData;
+    backpage: ImageData;
+  }>({
     frontpage: { file: null, preview: null },
     backpage: { file: null, preview: null },
   });
-  const [response, setResponse] = useState({});
-  const [loading, setLoading] = useState(false);
 
-  const handleImageUpload = (e, key) => {
-    const file = e.target.files[0];
+  const [response, setResponse] = useState<ApiResponseData>({});
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleImageUpload = (
+    e: ChangeEvent<HTMLInputElement>,
+    key: "frontpage" | "backpage"
+  ) => {
+    const file = e.target.files?.[0];
     if (file) {
       if (images[key]?.preview) {
-        URL.revokeObjectURL(images[key].preview);
+        URL.revokeObjectURL(images[key].preview as string);
       }
 
       setImages((prev) => ({
@@ -31,12 +39,15 @@ const App = () => {
     try {
       const formData = new FormData();
 
-      if (images.frontpage?.file) formData.append("frontpage", images.frontpage.file);
-      if (images.backpage?.file) formData.append("backpage", images.backpage.file);
+      if (images.frontpage?.file) {
+        formData.append("frontpage", images.frontpage.file);
+      }
+      if (images.backpage?.file) {
+        formData.append("backpage", images.backpage.file);
+      }
 
       setLoading(true);
-      
-      // Axios POST request
+
       const response = await axios.post(
         `https://ocr.vuepix.shop/upload-file`,
         formData,
@@ -47,35 +58,37 @@ const App = () => {
         }
       );
 
-      // Handle success response
-      setResponse(response.data.data);
+      setResponse(response.data.data || {});
       toast.success("Images uploaded successfully!");
-
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      
-      // Handle Axios error
+    } catch (error: any) {
+      console.error("Upload error:", error);
       if (error.response) {
-        // Server responded with a status other than 2xx
-        console.error("Error response:", error.response);
-        toast.error(`Error: ${error.response.data.message || "Something went wrong. Please try again."}`);
+        toast.error(
+          `Error: ${
+            error.response.data.message ||
+            "Something went wrong. Please try again."
+          }`
+        );
       } else if (error.request) {
-        // No response was received from the server
-        console.error("Error request:", error.request);
-        toast.error("No response from server. Please check your network connection.");
+        toast.error(
+          "No response from server. Please check your network connection."
+        );
       } else {
-        // Error setting up the request
-        console.error("Error message:", error.message);
         toast.error("An unexpected error occurred. Please try again later.");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     return () => {
-      if (images.frontpage?.preview) URL.revokeObjectURL(images.frontpage.preview);
-      if (images.backpage?.preview) URL.revokeObjectURL(images.backpage.preview);
+      if (images.frontpage?.preview) {
+        URL.revokeObjectURL(images.frontpage.preview);
+      }
+      if (images.backpage?.preview) {
+        URL.revokeObjectURL(images.backpage.preview);
+      }
     };
   }, [images]);
 
