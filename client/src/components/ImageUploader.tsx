@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageUploaderProps } from "@/interface/interface";
+import { ImageUploaderProps } from "../interface/interface";
 import { toast } from "sonner";
 
 const ImageUploader: React.FC<ImageUploaderProps> = ({
@@ -8,7 +8,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
   handleUploadImage,
   loading,
 }) => {
-  const handleButtonClick = () => {
+  const handleButtonClick = (): void => {
     if (!images.frontpage?.preview || !images.backpage?.preview) {
       toast.error("Both Front Page and Back Page images are required!");
       return;
@@ -20,7 +20,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
     key: "frontpage" | "backpage",
     label: string,
     alt: string
-  ) => (
+  ): JSX.Element => (
     <div className="relative w-60 h-40">
       {images[key]?.preview ? (
         <div className="relative group">
@@ -63,13 +63,8 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
 
   return (
     <div className="flex flex-col items-center space-y-6">
-      {/* Front Page Upload */}
       {renderImageUpload("frontpage", "Upload Front Page", "Front Page")}
-
-      {/* Back Page Upload */}
       {renderImageUpload("backpage", "Upload Back Page", "Back Page")}
-
-      {/* Parse Aadhar Button */}
       <div className="flex justify-center mt-4">
         <button
           className={`py-2 px-4 rounded font-bold text-white ${

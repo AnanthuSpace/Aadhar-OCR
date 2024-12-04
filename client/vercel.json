@@ -1,8 +1,15 @@
 {
-    "rewrites": [
-       {
-          "source": "/(.*)",
-          "destination": "/index.html"
-       }
-    ]
+   "rewrites": [
+     {
+       "source": "/(.*)",
+       "destination": "/index.html"
+     }
+   ],
+   "builds": [
+     {
+       "src": "vite.config.ts",
+       "use": "@vercel/node"
+     }
+   ]
  }
+ 

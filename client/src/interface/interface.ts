@@ -9,16 +9,18 @@ export interface ApiResponseData {
     DOB?: string;
     Gender?: string;
     Address?: string;
-    [key: string]: any;
-}
-
+  }
+  
 
 export interface ImageUploaderProps {
     images: {
-        frontpage: { file: File | null; preview: string | null };
-        backpage: { file: File | null; preview: string | null };
+        frontpage: ImageData;
+        backpage: ImageData;
     };
-    handleImageUpload: (e: React.ChangeEvent<HTMLInputElement>, key: "frontpage" | "backpage") => void;
+    handleImageUpload: (
+        e: React.ChangeEvent<HTMLInputElement>,
+        key: "frontpage" | "backpage"
+    ) => void;
     handleUploadImage: () => void;
     loading: boolean;
 }

@@ -6,4 +6,9 @@ export default defineConfig({
   optimizeDeps: {
     include: ["@nextui-org/react"],
   },
+  resolve: {
+    alias: {
+      '@': '/src', 
+    },
+  },
 })
