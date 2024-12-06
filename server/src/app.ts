@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors, { CorsOptions } from 'cors';
-import userRouter from './router/userRouter.js';
+import userRouter from './router/userRouter';
 import { errorHandle, notFound } from './middleware/errorHanler';
 
 const localHostURl = process.env.localhostUR as string

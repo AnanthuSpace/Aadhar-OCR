@@ -1,12 +1,11 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "type": "module",
   "main": "dist/server.js",
   "scripts": {
-    "start": "nodemon --exec ts-node -P tsconfig.json src/server.ts",
-    "build": "tsc",
-    "serve": "node dist/server.js"
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "author": "Ananthu Mohan",
   "license": "ISC",
@@ -15,13 +14,13 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/multer": "^1.4.12",
-    "@types/node": "^22.10.1",
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "multer": "^1.4.5-lts.1",
     "tesseract.js": "^5.1.1"
   },
   "devDependencies": {
+    "@types/node": "^22.10.1",
     "dotenv": "^16.4.5",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
