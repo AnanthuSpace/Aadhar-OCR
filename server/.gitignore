@@ -1,3 +1,18 @@
+# Ignore environment variables file
 .env
-node_modules
-tsconfig.json
+
+# Ignore node_modules directory
+/node_modules/
+
+# Ignore dist directory (compiled output)
+/dist/
+
+# Optional: Ignore logs
+*.log
+
+# Optional: Ignore IDE/editor specific files
+.vscode/
+.idea/
+
+# Optional: Ignore other unnecessary files
+npm-debug.log
