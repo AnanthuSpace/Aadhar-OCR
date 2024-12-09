@@ -3,10 +3,10 @@ import { AddressData, MulterRequest } from "../interface/comment.interface";
 import { IUserService } from "../interface/userService.interface";
 
 export class UserController {
-  private _userService: IUserService;
+  private userService: IUserService;
 
   constructor(userService: IUserService) {
-    this._userService = userService;
+    this.userService = userService;
   }
 
   public async parseAadhar(req: MulterRequest, res: Response): Promise<void> {
@@ -26,20 +26,20 @@ export class UserController {
         return;
       }
 
-      const frontpageText: string = await this._userService.getDataFromAadhar(frontpageBuffer);
-      const backpageText: string = await this._userService.getDataFromAadhar(backpageBuffer);
+      const frontpageText: string = await this.userService.getDataFromAadhar(frontpageBuffer);
+      const backpageText: string = await this.userService.getDataFromAadhar(backpageBuffer);
 
-      const aadharNumber: string | null = await this._userService.getAadharNumber(frontpageText);
+      const aadharNumber: string | null = await this.userService.getAadharNumber(frontpageText);
       if (!aadharNumber) {
         res.status(400).json({ status: false, message: "Invalid Aadhar card data!" });
         return;
       }
 
       const [name, gender, dob, addressData] = await Promise.all([
-        this._userService.getName(frontpageText),
-        this._userService.getGender(frontpageText),
-        this._userService.getDOB(frontpageText),
-        this._userService.getAddress(backpageText),
+        this.userService.getName(frontpageText),
+        this.userService.getGender(frontpageText),
+        this.userService.getDOB(frontpageText),
+        this.userService.getAddress(backpageText),
       ]);
 
       if (typeof addressData === "string") {
@@ -48,6 +48,7 @@ export class UserController {
       }
 
       const { address, pincode }: AddressData = addressData;
+      console.log("Hiiiiiiiiiiiiiiiii", addressData)
 
       res.status(200).json({
         status: true,

@@ -1,7 +1,6 @@
 import tesseract from "tesseract.js";
 import { AddressData } from "../interface/comment.interface";
 
-
 export class UserService {
   public async getDataFromAadhar(image: Buffer): Promise<string> {
     const {
@@ -50,12 +49,11 @@ export class UserService {
       const code = match[0].match(/\d{6}/);
 
       if (code) {
-        const res = filteredWords.join(", ");
-        return { address: `${res}, ${code[0]}`, pincode: code[0] };
+        const result = filteredWords.join(", ");
+        return { address: `${result}, ${code[0]}`, pincode: code[0] };
       }
     }
 
     return "Address not found";
   }
 }
-
